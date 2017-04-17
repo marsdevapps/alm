@@ -29,7 +29,7 @@ dependencies {
     compile 'org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version'
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.13'
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-javafx:0.13'
-    compile 'no.tornado:tornadofx:1.7.1-SNAPSHOT'
+    compile 'no.tornado:tornadofx:1.7.1'
     compile 'org.slf4j:slf4j-api:1.7.21'
 
     compile 'uk.co.caprica:vlcj:3.11.0-SNAPSHOT'
@@ -38,6 +38,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
 }
+
 sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
 }
