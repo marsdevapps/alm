@@ -1,5 +1,8 @@
 package com.marsdev.alm.player.app
 
+import javafx.geometry.Pos
+import javafx.scene.effect.DropShadow
+import javafx.scene.effect.GaussianBlur
 import javafx.scene.paint.Color
 import javafx.scene.paint.CycleMethod
 import javafx.scene.paint.LinearGradient
@@ -18,18 +21,30 @@ class PlayerStyles : Stylesheet() {
         val title by cssid()
         val subTitle by cssid()
         val contentPane by cssclass()
+        val innerContentPane by cssid()
         val firstLaunchView by cssclass()
         val firstLaunchViewTitle by cssid()
         val firstLaunchViewSubTitle by cssid()
         val firstLaunchViewOverlay by cssid()
 
-        val openSansRegular: Font = PlayerStyles::class.java.getResourceAsStream("/fonts/Open_Sans/OpenSans-Regular.ttf").use {
-            Font.loadFont(it, 20.0)
-        }
+        val clearButton by cssclass()
 
-        val openSansLight: Font = PlayerStyles::class.java.getResourceAsStream("/fonts/Open_Sans/OpenSans-Light.ttf").use {
-            Font.loadFont(it, 20.0)
-        }
+        // icons
+        val angleLeft by cssclass()
+        val angleRight by cssclass()
+        val arrowUp by cssclass()
+
+        val sideBar by cssid()
+        val bottomPlayerBar by cssid()
+
+        val openSansRegular: Font = loadFont("/fonts/Open_Sans/OpenSans-Regular.ttf", 20.0) ?: Font.font(20.0)
+
+        val openSansLight: Font = loadFont("/fonts/Open_Sans/OpenSans-Light.ttf", 20.0) ?: Font.font(20.0)
+
+        val listMenu by cssclass()
+        val listItem by cssclass()
+        val active by csspseudoclass()
+
 
     }
 
@@ -58,7 +73,12 @@ class PlayerStyles : Stylesheet() {
 
         contentPane {
             backgroundColor += backGroundColor
+        }
 
+        innerContentPane {
+            padding = box(40.0.px)
+//            spacing = 10.px
+//            backgroundColor += Color.RED
         }
 
         title {
@@ -75,6 +95,41 @@ class PlayerStyles : Stylesheet() {
         label {
             textFill = altWhiteTextColor
         }
+        sideBar {
+            backgroundColor += LinearGradient(0.5, 0.5, 0.5, 1.1, true, CycleMethod.NO_CYCLE, Stop(0.0, c("#292e33", 1.0)), Stop(1.0, c("#1a1b1c", 1.0)))
+            effect = DropShadow().also { GaussianBlur() }
+            padding = box(20.px)
+            spacing = 10.px
+        }
 
+        bottomPlayerBar {
+            backgroundColor += greenTextColor
+            padding = box(40.px)
+            spacing = 10.px
+            alignment = Pos.CENTER_LEFT
+        }
+
+        clearButton {
+            backgroundColor += Color.TRANSPARENT
+        }
+
+        listItem contains star {
+            fill = Color.WHITE
+            and(active) {
+                fill = greenTextColor
+            }
+            and(hover) {
+                fill = greenTextColor
+            }
+            alignment = Pos.BASELINE_CENTER
+
+
+        }
+        listItem {
+            padding = box(20.px)
+//            prefWidth = 30.px
+            backgroundColor += Color.TRANSPARENT
+            alignment = Pos.BASELINE_CENTER
+        }
     }
 }

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="2029.5 -52.5 225 1065">
+    <defs>
+        <style>
+            .cls-1 {
+            fill: url(#linear-gradient);
+            }
+
+            .cls-2 {
+            filter: url(#Sidebar);
+            }
+        </style>
+        <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#292e33"/>
+            <stop offset="1" stop-color="#1a1b1c"/>
+        </linearGradient>
+        <filter id="Sidebar" x="2029.5" y="-52.5" width="225" height="1065" filterUnits="userSpaceOnUse">
+            <feOffset dx="10" input="SourceAlpha"/>
+            <feGaussianBlur stdDeviation="17.5" result="blur"/>
+            <feFlood flood-opacity="0.463"/>
+            <feComposite operator="in" in2="blur"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g class="cls-2" transform="matrix(1, 0, 0, 1, 0, 0)">
+        <rect id="Sidebar-2" data-name="Sidebar" class="cls-1" width="120" height="960" transform="translate(2072)"/>
+    </g>
+</svg>

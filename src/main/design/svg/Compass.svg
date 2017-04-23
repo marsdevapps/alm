@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="2117.5 284.471 25.196 25.189">
+    <defs>
+        <style>
+            .cls-1 {
+            fill: none;
+            stroke: #f8fcff;
+            stroke-width: 2px;
+            }
+        </style>
+    </defs>
+    <path id="Compass" class="cls-1"
+          d="M12.013,22.254,9.2,14.031.976,11.217a1.44,1.44,0,0,1-.08-2.7L21.171.18a1.444,1.444,0,0,1,1.884,1.884L14.708,22.334A1.441,1.441,0,0,1,12.013,22.254Z"
+          transform="translate(2118.5 285.432)"/>
+</svg>

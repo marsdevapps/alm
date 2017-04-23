@@ -1,4 +1,3 @@
 package com.marsdev.alm.player.models
 
-class Album {
-}
+data class Album(val artist: Artist, val name: String, val tracks: Set<Track>)
