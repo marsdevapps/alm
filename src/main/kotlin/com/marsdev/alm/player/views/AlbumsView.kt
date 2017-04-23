@@ -33,6 +33,10 @@ class AlbumsView : View("Albums") {
                         addClass(PlayerStyles.albumCell)
                     }
                 }
+                onUserSelect {
+                    println("Album: ${it.name}  Track Count:  ${it.tracks.size}")
+                }
+
             }
         }
 

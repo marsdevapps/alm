@@ -1,11 +1,22 @@
 package com.marsdev.alm.player.views
 
 import com.marsdev.alm.player.app.PlayerStyles
+import com.marsdev.alm.player.controllers.Library
 import javafx.geometry.Pos
 import javafx.scene.paint.Color
 import tornadofx.*
 
 class FirstLaunchView : View("Kida Music") {
+
+    val library: Library by inject()
+
+    init {
+        runAsync {
+            library.loadAlbums()
+        } ui {
+            replaceWith(PlayerView::class, ViewTransition.FadeThrough(1.0.seconds, Color.BLACK))
+        }
+    }
 
     override val root = borderpane {
         prefWidth = 1920.0
@@ -31,10 +42,8 @@ class FirstLaunchView : View("Kida Music") {
                         fill = Color.WHITE
                     }
                     label("Welcome to Kida Music").setId(PlayerStyles.firstLaunchViewTitle)
-                    label("Stream millions of songs from your device").setId(PlayerStyles.firstLaunchViewSubTitle)
+                    label("Listen to millions of songs from your device").setId(PlayerStyles.firstLaunchViewSubTitle)
                 }
-            }.setOnMouseClicked {
-                replaceWith(PlayerView::class, ViewTransition.FadeThrough(1.0.seconds, Color.BLACK))
             }
         }
     }

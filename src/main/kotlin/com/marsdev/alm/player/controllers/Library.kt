@@ -8,12 +8,18 @@ class Library : Controller() {
     val albumService = AlbumService()
     val albums = HashSet<Album>()
 
-    init {
-        albums.addAll(albumService.getAlbums("D:\\temp\\music-small"))
+    fun getAlbums(): List<Album> {
+        if (albums.size == 0) {
+            loadAlbums()
+        }
+        return albums.toList().sorted()
     }
 
-    fun getAlbums(): List<Album> {
-        return albums.toList().sorted()
+    fun loadAlbums(): Boolean {
+        if (albums.size == 0) {
+            albums.addAll(albumService.getAlbums("D:\\temp\\music-small"))
+        }
+        return true
     }
 
 }

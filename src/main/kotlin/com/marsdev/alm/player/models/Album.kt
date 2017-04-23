@@ -13,7 +13,6 @@ data class Album(val artist: Artist, val name: String, val tracks: HashSet<Track
 
         other as Album
 
-//        if (artist != other.artist) return false
         if (name != other.name) return false
 
         return true
