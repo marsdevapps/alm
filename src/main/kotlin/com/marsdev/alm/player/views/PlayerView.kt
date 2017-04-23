@@ -1,6 +1,8 @@
 package com.marsdev.alm.player.views
 
 import com.marsdev.alm.player.app.PlayerStyles
+import com.marsdev.alm.player.models.Track
+import com.marsdev.alm.player.service.AlbumService
 import com.marsdev.alm.simple.app.fontAwesomeIcon
 import com.marsdev.alm.simple.app.materialIcon
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon
@@ -31,8 +33,11 @@ class PlayerView : View("ALM Player") {
     val navMenu = ListMenu(hamburgerMenuItem, searchMenuItem, locationItem, albumItem, musicItem, graphicEQItem, userMenuItem)
     val bottomNavMenu = ListMenu(settingsItem)
     val bottomIcon = MaterialIconView(MaterialIcon.FORMAT_LIST_BULLETED)
+    val albumService = AlbumService()
+    val tracks = HashSet<Track>()
 
     init {
+        tracks.addAll(albumService.rescan("D:\\temp\\music-small"))
         topMenu.orientation = Orientation.HORIZONTAL
         topMenu.iconPosition = Side.LEFT
         navMenu.iconPosition = Side.TOP
@@ -69,14 +74,27 @@ class PlayerView : View("ALM Player") {
         center {
             borderpane {
                 top {
-                    add(topMenu)
+                    vbox {
+                        add(topMenu)
+                        label("Tracks").setId(PlayerStyles.subTitle)
+                    }
 
                 }
 
                 center {
-                    vbox {
-                        label("Albums").setId(PlayerStyles.subTitle)
+                    datagrid(tracks.toList()) {
+                        cellHeight = 250.0
+                        cellWidth = 250.0
+                        cellCache {
+                            stackpane {
+                                label(it.title)
+                                imageview(it.album.image) {
+                                    fitHeight = 250.0
+                                    fitWidth = 250.0
+                                }
+                            }
 
+                        }
                     }
                 }
             }.setId(PlayerStyles.innerContentPane)
