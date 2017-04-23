@@ -1,15 +1,10 @@
-package com.marsdev.alm.player.app
+package com.marsdev.alm.player.models
 
-import com.marsdev.alm.player.models.Album
-import com.marsdev.alm.player.models.AlbumModel
-import com.marsdev.alm.player.models.TrackModel
 import javafx.beans.property.SimpleDoubleProperty
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
-import tornadofx.*
 
-class LibraryScope : Scope() {
-
+class LibraryModel {
     val currentAlbum = AlbumModel()
     val currentTrack = TrackModel()
     val currentAlbums: ObservableList<Album> = FXCollections.observableArrayList<Album>()
