@@ -1,9 +1,9 @@
 package com.marsdev.alm.player.app
 
-import com.marsdev.alm.player.views.PlayerView
+import com.marsdev.alm.player.views.FirstLaunchView
 import tornadofx.*
 
-class PlayerApp : App(PlayerView::class, PlayerStyles::class) {
+class PlayerApp : App(FirstLaunchView::class, PlayerStyles::class) {
     init {
         reloadStylesheetsOnFocus()
         reloadViewsOnFocus()

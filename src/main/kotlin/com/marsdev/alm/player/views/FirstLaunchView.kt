@@ -6,6 +6,7 @@ import javafx.scene.paint.Color
 import tornadofx.*
 
 class FirstLaunchView : View("Kida Music") {
+
     override val root = borderpane {
         prefWidth = 1920.0
         prefHeight = 1080.0
@@ -32,6 +33,8 @@ class FirstLaunchView : View("Kida Music") {
                     label("Welcome to Kida Music").setId(PlayerStyles.firstLaunchViewTitle)
                     label("Stream millions of songs from your device").setId(PlayerStyles.firstLaunchViewSubTitle)
                 }
+            }.setOnMouseClicked {
+                replaceWith(PlayerView::class, ViewTransition.FadeThrough(1.0.seconds, Color.BLACK))
             }
         }
     }
