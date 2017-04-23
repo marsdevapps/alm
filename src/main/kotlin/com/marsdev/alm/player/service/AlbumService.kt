@@ -8,18 +8,39 @@ import org.jaudiotagger.audio.flac.FlacFileReader
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.util.*
+import kotlin.collections.ArrayList
 
 class AlbumService {
 
-    fun getAlbums(musicDirectory: String): Set<Album> {
-        val albums = HashSet<Album>()
-
-
-        return albums
+    companion object {
+        const val ARTIST = "ARTIST"
+        const val ALBUM_ARTIST = "ALBUM_ARTIST"
+        const val TITLE = "TITLE"
+        const val ALBUM = "ALBUM"
+        const val YEAR = "YEAR"
+        const val GENRE = "GENRE"
+        const val TRACK = "TRACK"
+        const val TRACK_TOTAL = "TRACK_TOTAL"
+        const val DISC_NO = "DISC_NO"
+        const val DISC_TOTAL = "DISC_TOTAL"
+        const val RECORD_LABEL = "RECORD_LABEL"
+        const val CATALOG_NO = "CATALOG_NO"
+        const val COMMENT = "COMMENT"
+        const val RATING = "RATING"
     }
 
-    fun rescan(musicDirectory: String): Set<Track> {
+    val albums = HashSet<Album>()
+
+    fun getAlbums(musicDirectory: String): Set<Album> {
+        this.albums.clear()
+        rescan(musicDirectory)
+        return this.albums
+    }
+
+    private fun rescan(musicDirectory: String): Set<Track> {
         val tracks = HashSet<Track>()
+        val albums = HashSet<Album>()
+        val artists = ArrayList<Artist>()
 
         val queue = LinkedList<File>()
         val f = File(musicDirectory)
@@ -30,7 +51,6 @@ class AlbumService {
             try {
                 val file = queue.pop()
                 if (file.isDirectory) {
-//                    queue.addAll(0, Arrays.asList(*file.listFiles(FileFilter { f -> f.extension.equals(".flac", true) })))
                     queue.addAll(0, Arrays.asList(*file.listFiles()))
                 } else {
                     if (file.extension.equals("flac", true)) {
@@ -39,13 +59,35 @@ class AlbumService {
                         val tag = audioFile.tag
                         audioFile.tag.firstArtwork.binaryData
 
-                        val artist = Artist(tag.getFields("ARTIST")[0].toString())
-                        val album = Album(artist, tag.getFields("ALBUM")[0].toString(), HashSet<Track>(), Image(ByteArrayInputStream(audioFile.tag.firstArtwork.binaryData)))
+                        val artistName = tag.getFields(ARTIST)[0].toString()
+                        val templateArtist = Artist(artistName)
+                        if (!artists.contains(templateArtist)) {
+                            artists.add(templateArtist)
+                        }
+
+                        val albumTemplate = Album(artists[artists.indexOf(templateArtist)], tag.getFields(ALBUM)[0].toString(), HashSet<Track>(), Image(ByteArrayInputStream(audioFile.tag.firstArtwork.binaryData)))
+                        if (!albums.contains(albumTemplate)) {
+                            albums.add(albumTemplate)
+                        }
+
+                        val currentAlbum = albums.filter { it.name.equals(tag.getFields(ALBUM)[0].toString()) }.first()
+
+
+                        val dateString = if (tag.getFields("DATE").size > 0) {
+                            tag.getFields("DATE")[0].toString()
+                        } else {
+                            ""
+                        }
+                        var trackYear = 0
+                        if (!dateString.equals("") && dateString.length > 4) {
+                            trackYear = dateString.substring(0, 3).toInt()
+                        }
+
                         val newTrack = Track(
-                                artist,
-                                album,
-                                tag.getFields("TITLE")[0].toString(),
-                                tag.getFields("DATE")[0].toString().substring(0, 3).toInt(),
+                                currentAlbum.artist,
+                                currentAlbum,
+                                tag.getFields(TITLE)[0].toString(),
+                                trackYear,
                                 0,
                                 0,
                                 0,
@@ -54,32 +96,14 @@ class AlbumService {
                                 file.name,
                                 file.parentFile.path
                         )
+                        currentAlbum.tracks.add(newTrack)
                         tracks.add(newTrack)
                     }
-//                    var trackData = TrackData(file.toURI(), 0)
-//                    val track = trackDatas.get(trackData)
-//                    if (track != null) {
-//                        if (track!!.getTrackData().getLastModified() !== file.lastModified()) {
-//                            track!!.getTrackData().clearTags()
-//                            TrackIO.getAudioFileReader(file.name).reload(track)
-//                        }
-//                        tracks.add(track)
-//                    } else {
-//                        temp.clear()
-//                        TrackIO.getAudioFileReader(file.name).read(file, temp)
-//                        for (newTrack in temp) {
-//                            trackData = newTrack.getTrackData()
-//                            if (trackDatas.containsKey(trackData)) {
-//                                 it must be the cue file, so  merge the track data
-//                                trackData.merge(newTrack.getTrackData())
-//                            }
-//                            tracks.add(newTrack)
-//                        }
-//                    }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+            this.albums.addAll(albums)
 
         }
         return tracks

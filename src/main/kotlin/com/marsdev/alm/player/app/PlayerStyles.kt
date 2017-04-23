@@ -45,6 +45,11 @@ class PlayerStyles : Stylesheet() {
         val listItem by cssclass()
         val active by csspseudoclass()
 
+        val albumDataGrid by cssclass()
+        val albumCell by cssclass()
+        val albumTitle by cssid()
+        val albumArtist by cssid()
+
 
     }
 
@@ -89,8 +94,10 @@ class PlayerStyles : Stylesheet() {
         subTitle {
             fontSize = 20.px
             textFill = whiteTextColor
-            fontFamily = "Open Sans"
+            font = openSansLight
         }
+
+
 
         label {
             textFill = altWhiteTextColor
@@ -127,9 +134,44 @@ class PlayerStyles : Stylesheet() {
         }
         listItem {
             padding = box(20.px)
-//            prefWidth = 30.px
             backgroundColor += Color.TRANSPARENT
             alignment = Pos.BASELINE_CENTER
         }
+
+        albumDataGrid {
+            scrollBar contains star {
+                backgroundColor += backGroundColor
+            }
+
+            scrollBar {
+                decrementArrow {
+                    padding = box(0.px)
+                    shape = ""
+                }
+
+                incrementArrow {
+                    padding = box(0.px)
+                    shape = ""
+                }
+            }
+        }
+
+        albumCell {
+            backgroundColor += backGroundColor
+            alignment = Pos.CENTER
+            textFill = whiteTextColor
+            spacing = 2.px
+        }
+
+        albumTitle {
+            font = openSansRegular
+            fontSize = 16.px
+        }
+
+        albumArtist {
+            font = openSansRegular
+            fontSize = 12.px
+        }
+
     }
 }
