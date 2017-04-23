@@ -2,7 +2,6 @@ package com.marsdev.alm.player.views
 
 import com.marsdev.alm.player.app.LibraryScope
 import com.marsdev.alm.player.app.PlayerStyles
-import com.marsdev.alm.player.models.Track
 import javafx.scene.effect.DropShadow
 import tornadofx.*
 
@@ -21,8 +20,7 @@ class AlbumView : View("Album") {
                     imageProperty().bind(scope.currentAlbum.image)
 
                 }
-                listview<Track> {
-                    itemsProperty().bind(scope.currentAlbum.tracks)
+                listview(scope.currentAlbum.tracks) {
                 }
             }
         }
