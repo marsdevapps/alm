@@ -1,6 +1,7 @@
 package com.marsdev.alm.player.views
 
 import com.marsdev.alm.player.app.PlayerStyles
+import com.marsdev.alm.player.controllers.Library
 import com.marsdev.alm.simple.app.fontAwesomeIcon
 import com.marsdev.alm.simple.app.materialIcon
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon
@@ -23,9 +24,12 @@ class PlayerSideNavView : View("Navigation") {
     val settingsItem = ListItem("", fontAwesomeIcon(FontAwesomeIcon.GEARS, 30))
     val navMenu = ListMenu(hamburgerMenuItem, searchMenuItem, locationItem, albumItem, musicItem, graphicEQItem, userMenuItem)
     val bottomNavMenu = ListMenu(settingsItem)
-
+    val library: Library by inject()
     init {
         navMenu.iconPosition = Side.TOP
+        albumItem.setOnMouseClicked {
+            library.showAlbumsView()
+        }
     }
 
     override val root = vbox {

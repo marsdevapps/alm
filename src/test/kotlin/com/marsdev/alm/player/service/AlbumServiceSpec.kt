@@ -11,10 +11,10 @@ class AlbumServiceSpec : Spek({
         val albumService = AlbumService()
 
         on("rescan") {
-            val tracks = albumService.rescan("D:\\temp\\music-small")
+            val albums = albumService.getAlbums("D:\\temp\\music-small")
 
             it("should have files") {
-                assert(tracks.size > 0)
+                assert(albums.size > 0)
             }
         }
     }

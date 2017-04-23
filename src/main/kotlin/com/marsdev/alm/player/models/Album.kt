@@ -1,8 +1,23 @@
 package com.marsdev.alm.player.models
 
+import javafx.beans.property.SimpleObjectProperty
+import javafx.beans.property.SimpleStringProperty
+import javafx.collections.FXCollections
 import javafx.scene.image.Image
+import tornadofx.*
 
-data class Album(val artist: Artist, val name: String, val tracks: HashSet<Track>, val image: Image) : Comparable<Album> {
+class Album : Comparable<Album> {
+    val imageProperty = SimpleObjectProperty<Image>()
+    var image by imageProperty
+
+    val tracks = FXCollections.observableArrayList<Track>()
+
+    val nameProperty = SimpleStringProperty()
+    var name by nameProperty
+
+    val artistProperty = SimpleObjectProperty<Artist>()
+    var artist by artistProperty
+
     override fun compareTo(other: Album): Int {
         return name.compareTo(other.name, true)
     }
@@ -24,3 +39,14 @@ data class Album(val artist: Artist, val name: String, val tracks: HashSet<Track
         return result
     }
 }
+
+class AlbumModel : ItemViewModel<Album>() {
+    val image = bind { item?.imageProperty }
+    val tracks = SimpleObjectProperty(item?.tracks)
+    val name = bind { item?.nameProperty }
+    val artist = bind { item?.artistProperty }
+}
+
+
+
+

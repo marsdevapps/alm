@@ -1,14 +1,13 @@
 package com.marsdev.alm.player.views
 
+import com.marsdev.alm.player.app.LibraryScope
 import com.marsdev.alm.player.app.PlayerStyles
-import com.marsdev.alm.player.controllers.Library
 import javafx.scene.effect.DropShadow
+import javafx.scene.paint.Color
 import tornadofx.*
 
 class AlbumsView : View("Albums") {
-
-    val library: Library by inject()
-
+    override val scope = super.scope as LibraryScope
 
     override val root = borderpane {
 
@@ -17,7 +16,7 @@ class AlbumsView : View("Albums") {
         }
         center {
             setId(PlayerStyles.innerContentPane)
-            datagrid(library.getAlbums()) {
+            datagrid(scope.currentAlbums) {
                 addClass(PlayerStyles.albumDataGrid)
                 cellHeight = 300.0
                 cellWidth = 300.0
@@ -35,6 +34,8 @@ class AlbumsView : View("Albums") {
                 }
                 onUserSelect {
                     println("Album: ${it.name}  Track Count:  ${it.tracks.size}")
+                    scope.currentAlbum.item = it
+                    replaceWith(AlbumView::class, ViewTransition.FadeThrough(1.0.seconds, Color.BLACK))
                 }
 
             }

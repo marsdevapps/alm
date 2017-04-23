@@ -65,7 +65,11 @@ class AlbumService {
                             artists.add(templateArtist)
                         }
 
-                        val albumTemplate = Album(artists[artists.indexOf(templateArtist)], tag.getFields(ALBUM)[0].toString(), HashSet<Track>(), Image(ByteArrayInputStream(audioFile.tag.firstArtwork.binaryData)))
+                        val albumTemplate = Album()
+                        albumTemplate.artist = artists[artists.indexOf(templateArtist)]
+                        albumTemplate.name = tag.getFields(ALBUM)[0].toString()
+                        albumTemplate.image = Image(ByteArrayInputStream(audioFile.tag.firstArtwork.binaryData))
+
                         if (!albums.contains(albumTemplate)) {
                             albums.add(albumTemplate)
                         }

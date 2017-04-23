@@ -1,5 +1,6 @@
 package com.marsdev.alm.player.views
 
+import com.marsdev.alm.player.app.LibraryScope
 import com.marsdev.alm.player.app.PlayerStyles
 import com.marsdev.alm.player.controllers.Library
 import javafx.geometry.Pos
@@ -7,7 +8,7 @@ import javafx.scene.paint.Color
 import tornadofx.*
 
 class FirstLaunchView : View("Kida Music") {
-
+    override val scope = LibraryScope()
     val library: Library by inject()
 
     init {

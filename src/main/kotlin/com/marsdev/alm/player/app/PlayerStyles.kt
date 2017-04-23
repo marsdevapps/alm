@@ -45,6 +45,8 @@ class PlayerStyles : Stylesheet() {
         val listItem by cssclass()
         val active by csspseudoclass()
 
+        val albumView by cssclass()
+
         val albumDataGrid by cssclass()
         val albumCell by cssclass()
         val albumTitle by cssid()
@@ -171,6 +173,10 @@ class PlayerStyles : Stylesheet() {
         albumArtist {
             font = openSansRegular
             fontSize = 12.px
+        }
+
+        albumView {
+            padding = box(40.0.px)
         }
 
     }
