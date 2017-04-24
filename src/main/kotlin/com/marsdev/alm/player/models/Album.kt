@@ -3,7 +3,6 @@ package com.marsdev.alm.player.models
 import javafx.beans.property.SimpleObjectProperty
 import javafx.beans.property.SimpleStringProperty
 import javafx.collections.FXCollections
-import javafx.collections.ObservableList
 import javafx.scene.image.Image
 import tornadofx.*
 
@@ -42,10 +41,10 @@ class Album : Comparable<Album> {
 }
 
 class AlbumModel : ItemViewModel<Album>() {
-    val image = bind { item?.imageProperty }
-    val tracks = bind { SimpleObjectProperty<ObservableList<Track>>(item?.tracks) }
-    val name = bind { item?.nameProperty }
-    val artist = bind { item?.artistProperty }
+    val image = bind(Album::imageProperty)
+    val tracks = bind(Album::tracks)
+    val name = bind(Album::nameProperty)
+    val artist = bind(Album::artistProperty)
 }
 
 

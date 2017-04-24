@@ -1,5 +1,7 @@
 package com.marsdev.alm.player.app
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView
 import javafx.geometry.Pos
 import javafx.scene.effect.DropShadow
 import javafx.scene.effect.GaussianBlur
@@ -36,7 +38,12 @@ class PlayerStyles : Stylesheet() {
         val arrowUp by cssclass()
 
         val sideBar by cssid()
-        val bottomPlayerBar by cssid()
+
+        val bottomPlayerBar by cssclass()
+        val bottomPlayerBarRightCorner by cssid()
+        val bottomPlayerBarTrackTitle by cssid()
+        val bottomPlayerBarTrackDuration by cssid()
+        val bottomPlayerBarTrackControls by cssid()
 
         val openSansRegular: Font = loadFont("/fonts/Open_Sans/OpenSans-Regular.ttf", 20.0) ?: Font.font(20.0)
 
@@ -53,11 +60,31 @@ class PlayerStyles : Stylesheet() {
         val albumTitle by cssid()
         val albumArtist by cssid()
 
+        val playIcon by cssclass()
+        fun playIcon() = FontAwesomeIconView(FontAwesomeIcon.PLAY).apply {
+            glyphSize = 22
+            addClass(playIcon)
+        }
+
+        val pauseIcon by cssclass()
+        fun pauseIcon() = FontAwesomeIconView(FontAwesomeIcon.PAUSE).apply {
+            glyphSize = 22
+            addClass(pauseIcon)
+        }
+
+        val stopIcon by cssclass()
+        fun stopIcon() = FontAwesomeIconView(FontAwesomeIcon.STOP).apply {
+            glyphSize = 22
+            addClass(stopIcon)
+        }
 
     }
 
     init {
 
+        stopIcon {
+            backgroundColor += Color.TRANSPARENT
+        }
         firstLaunchView {
         }
 
@@ -120,6 +147,29 @@ class PlayerStyles : Stylesheet() {
             padding = box(40.px)
             spacing = 10.px
             alignment = Pos.CENTER_LEFT
+        }
+        bottomPlayerBarRightCorner {
+            backgroundColor += greenTextColor
+
+        }
+        bottomPlayerBarTrackTitle {
+            backgroundColor += Color.TRANSPARENT
+            effect = GaussianBlur()
+            font = openSansLight
+            textFill = Color.WHITE
+            fontSize = 18.px
+        }
+        bottomPlayerBarTrackDuration {
+            backgroundColor += Color.TRANSPARENT
+            effect = GaussianBlur()
+            font = openSansRegular
+            textFill = Color.WHITE
+            fontSize = 18.px
+
+        }
+        bottomPlayerBarTrackControls {
+            backgroundColor += greenTextColor
+
         }
 
         clearButton {

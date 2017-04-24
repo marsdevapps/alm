@@ -18,7 +18,7 @@ class PlayerBottomView : View("Bottom") {
     }
 
     override val root = gridpane {
-        setId(PlayerStyles.bottomPlayerBar)
+        addClass(PlayerStyles.bottomPlayerBar)
         maxHeight = 120.0
         prefHeight = 120.0
         minHeight = 120.0
@@ -29,7 +29,7 @@ class PlayerBottomView : View("Bottom") {
                     hgrow = Priority.SOMETIMES
                     percentWidth = 6.0
                 }
-            }
+            }.setId(PlayerStyles.bottomPlayerBarRightCorner)
             imageview {
                 imageProperty().bind(scope.currentAlbum.image)
                 fitHeight = 120.0
@@ -38,13 +38,13 @@ class PlayerBottomView : View("Bottom") {
                     hgrow = Priority.SOMETIMES
                     percentWidth = 6.0
                 }
-            }
+            }.setId(PlayerStyles.bottomPlayerBar)
             label(scope.currentTrack.title) {
                 gridpaneColumnConstraints {
                     hgrow = Priority.SOMETIMES
                     percentWidth = 17.0
                 }
-            }
+            }.setId(PlayerStyles.bottomPlayerBarTrackTitle)
             label(stringBinding(scope.duration) {
                 com.marsdev.alm.util.TimeFormatter.formatMilliseconds(value.toLong())
             }) {
@@ -52,17 +52,25 @@ class PlayerBottomView : View("Bottom") {
                     hgrow = Priority.SOMETIMES
                     percentWidth = 23.0
                 }
-            }
+            }.setId(PlayerStyles.bottomPlayerBarTrackDuration)
 
             hbox {
-                button("Play").action { library.play() }
-                button("Pause").action { library.pause() }
-                button("Stop").action { library.stop() }
+                button(graphic = PlayerStyles.playIcon()) {
+                    setOnAction { library.play() }
+
+                }
+                button(graphic = PlayerStyles.pauseIcon()) {
+                    setOnAction { library.pause() }
+                }
+
+                button(graphic = PlayerStyles.stopIcon()) {
+                    setOnAction { library.stop() }
+                }
                 gridpaneColumnConstraints {
                     hgrow = Priority.SOMETIMES
                     percentWidth = 38.0
                 }
-            }
+            }.setId(PlayerStyles.bottomPlayerBarTrackControls)
 
         }
 
