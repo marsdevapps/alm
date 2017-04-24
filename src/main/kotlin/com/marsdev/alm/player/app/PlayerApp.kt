@@ -7,6 +7,7 @@ import uk.co.caprica.vlcj.discovery.NativeDiscovery
 class PlayerApp : App(FirstLaunchView::class, PlayerStyles::class) {
     init {
         NativeDiscovery().discover()
+        reloadStylesheetsOnFocus()
     }
 
     override fun stop() {

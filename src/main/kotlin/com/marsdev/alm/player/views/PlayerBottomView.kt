@@ -45,7 +45,9 @@ class PlayerBottomView : View("Bottom") {
                     percentWidth = 17.0
                 }
             }
-            label(scope.progress) {
+            label(stringBinding(scope.duration) {
+                com.marsdev.alm.util.TimeFormatter.formatMilliseconds(value.toLong())
+            }) {
                 gridpaneColumnConstraints {
                     hgrow = Priority.SOMETIMES
                     percentWidth = 23.0

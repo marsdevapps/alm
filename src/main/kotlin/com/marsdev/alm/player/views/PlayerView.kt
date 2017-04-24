@@ -12,7 +12,7 @@ class PlayerView : View("ALM Player") {
         center {
             borderpane {
                 top(PlayerTopView::class)
-                center(MainContentView::class)
+                center(MainContentView::class).addClass(PlayerStyles.stackContentPane)
             }
         }
         bottom(PlayerBottomView::class)

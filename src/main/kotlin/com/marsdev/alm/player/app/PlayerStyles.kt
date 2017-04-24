@@ -21,6 +21,7 @@ class PlayerStyles : Stylesheet() {
         val title by cssid()
         val subTitle by cssid()
         val contentPane by cssclass()
+        val stackContentPane by cssclass()
         val innerContentPane by cssid()
         val firstLaunchView by cssclass()
         val firstLaunchViewTitle by cssid()
@@ -82,10 +83,13 @@ class PlayerStyles : Stylesheet() {
             backgroundColor += backGroundColor
         }
 
+        stackContentPane {
+            backgroundColor += Color.TRANSPARENT
+        }
+
+
         innerContentPane {
             padding = box(40.0.px)
-//            spacing = 10.px
-//            backgroundColor += Color.RED
         }
 
         title {
