@@ -23,10 +23,21 @@ class AlbumView : View("Album") {
 
                 }
                 listview(scope.currentAlbum.tracks) {
+                    addClass(PlayerStyles.albumTrackList)
                     onUserSelect {
                         scope.currentTrack.item = it
                         library.setMedia(it.directory + "\\" + it.fileName)
                         library.play()
+                    }
+
+                    cellCache {
+                        hbox {
+                            label(it.title)
+                            spacer { prefWidth = 25.0 }
+                            label(it.artist.name)
+                            spacer { prefWidth = 25.0 }
+                            label(it.year.toString())
+                        }
                     }
                 }
             }

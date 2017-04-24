@@ -62,29 +62,51 @@ class PlayerStyles : Stylesheet() {
 
         val playIcon by cssclass()
         fun playIcon() = FontAwesomeIconView(FontAwesomeIcon.PLAY).apply {
-            glyphSize = 22
+            glyphSize = 54
             addClass(playIcon)
         }
 
         val pauseIcon by cssclass()
         fun pauseIcon() = FontAwesomeIconView(FontAwesomeIcon.PAUSE).apply {
-            glyphSize = 22
+            glyphSize = 54
             addClass(pauseIcon)
         }
 
         val stopIcon by cssclass()
         fun stopIcon() = FontAwesomeIconView(FontAwesomeIcon.STOP).apply {
-            glyphSize = 22
+            glyphSize = 54
             addClass(stopIcon)
         }
+
+        val cleanButton by cssid()
+        val albumTrackList by cssclass()
 
     }
 
     init {
 
-        stopIcon {
+        albumTrackList contains star {
             backgroundColor += Color.TRANSPARENT
+            font = openSansLight
+            textFill = Color.WHITE
         }
+
+        albumTrackList {
+            backgroundColor += Color.TRANSPARENT
+
+            font = openSansLight
+            textFill = Color.WHITE
+            listCell {
+                backgroundColor += Color.TRANSPARENT
+            }
+        }
+
+        cleanButton {
+            backgroundColor += Color.TRANSPARENT
+            borderColor += box(Color.TRANSPARENT)
+            fill = Color.RED
+        }
+
         firstLaunchView {
         }
 
@@ -169,6 +191,7 @@ class PlayerStyles : Stylesheet() {
         }
         bottomPlayerBarTrackControls {
             backgroundColor += greenTextColor
+            alignment = Pos.CENTER
 
         }
 

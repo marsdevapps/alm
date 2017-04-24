@@ -56,14 +56,16 @@ class PlayerBottomView : View("Bottom") {
 
             hbox {
                 button(graphic = PlayerStyles.playIcon()) {
+                    addClass(PlayerStyles.clearButton)
                     setOnAction { library.play() }
-
                 }
                 button(graphic = PlayerStyles.pauseIcon()) {
+                    addClass(PlayerStyles.clearButton)
                     setOnAction { library.pause() }
                 }
 
                 button(graphic = PlayerStyles.stopIcon()) {
+                    addClass(PlayerStyles.clearButton)
                     setOnAction { library.stop() }
                 }
                 gridpaneColumnConstraints {
