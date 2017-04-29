@@ -1,4 +1,6 @@
 
+![Loading Screen](src/main/design/ss/loading-screen.png)
+![Albums Playing](src/main/design/ss/albums-playing.png)
 
 http://nightlies.videolan.org/build/
 
