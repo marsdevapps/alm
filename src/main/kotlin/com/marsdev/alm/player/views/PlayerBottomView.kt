@@ -25,6 +25,8 @@ class PlayerBottomView : View("Bottom") {
     val trackTitleStackPane = stackpane {
         minWidth = 220.0
         maxHeight = 120.0
+        minHeight = 120.0
+        prefHeight = 120.0
         addClass(PlayerStyles.bottomPlayerBarTrackTitleBackground)
         gridpaneColumnConstraints {
             hgrow = Priority.ALWAYS
@@ -34,6 +36,8 @@ class PlayerBottomView : View("Bottom") {
 
     val trackDurationStackPane = stackpane {
         minWidth = 320.0
+        prefHeight = 120.0
+        minHeight = 120.0
         maxHeight = 120.0
         addClass(PlayerStyles.bottomPlayerBarTrackDuration)
         gridpaneColumnConstraints {
@@ -48,7 +52,7 @@ class PlayerBottomView : View("Bottom") {
 
     val trackDurationImageView = imageview {
         imageProperty().bind(trackDurationImageViewImage)
-        effect = BoxBlur(10.0, 10.0, 1)
+        effect = BoxBlur(10.0, 10.0, 3)
         fitHeight = 120.0
         fitWidth = 320.0
     }
@@ -56,7 +60,7 @@ class PlayerBottomView : View("Bottom") {
 
     val trackTitleImageView = imageview {
         imageProperty().bind(trackTitleImageViewImage)
-        effect = BoxBlur(10.0, 10.0, 1)
+        effect = BoxBlur(10.0, 10.0, 3)
         fitHeight = 120.0
         fitWidth = 220.0
     }
@@ -71,25 +75,25 @@ class PlayerBottomView : View("Bottom") {
 
         trackTitleFiller.fill = c("#083120")
         trackTitleFiller.effect = GaussianBlur()
-        trackTitleFiller.opacity = 0.20
+        trackTitleFiller.opacity = 0.40
 
         trackDurationFiller.fill = c("#083120")
         trackDurationFiller.effect = GaussianBlur()
-        trackDurationFiller.opacity = 0.20
+        trackDurationFiller.opacity = 0.40
 
 
         trackTitleStackPane.children.addAll(
-                trackTitleImageView,
-                trackTitleFiller,
-                label(scope.currentTrack.title).setId(PlayerStyles.bottomPlayerBarTrackTitle)
+                //                trackTitleImageView,
+//                trackTitleFiller,
+//                label(scope.currentTrack.title).setId(PlayerStyles.bottomPlayerBarTrackTitle)
         )
 
         trackDurationStackPane.children.addAll(
-                trackDurationImageView,
-                trackDurationFiller,
-                label(stringBinding(scope.duration) {
-                    com.marsdev.alm.util.TimeFormatter.formatMilliseconds(value.toLong())
-                }).setId(PlayerStyles.bottomPlayerBarTrackDuration)
+                //                trackDurationImageView,
+//                trackDurationFiller,
+//                label(stringBinding(scope.duration) {
+//                    com.marsdev.alm.util.TimeFormatter.formatMilliseconds(value.toLong())
+//                }).setId(PlayerStyles.bottomPlayerBarTrackDuration)
         )
 
 

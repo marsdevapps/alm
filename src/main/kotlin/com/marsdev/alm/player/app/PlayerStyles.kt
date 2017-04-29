@@ -7,6 +7,7 @@ import de.jensd.fx.glyphs.materialicons.MaterialIconView
 import javafx.geometry.Pos
 import javafx.scene.effect.DropShadow
 import javafx.scene.effect.GaussianBlur
+import javafx.scene.layout.BorderStrokeStyle
 import javafx.scene.paint.Color
 import javafx.scene.paint.CycleMethod
 import javafx.scene.paint.LinearGradient
@@ -168,9 +169,12 @@ class PlayerStyles : Stylesheet() {
         }
 
         bottomPlayerBar {
-            padding = box(40.px)
-            spacing = 10.px
+            //            padding = box(40.px)
+//            spacing = 10.px
             alignment = Pos.CENTER_LEFT
+            borderColor += box(Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK)
+            borderStyle += BorderStrokeStyle.SOLID
+            borderWidth += box(1.px)
         }
         bottomPlayerBarRightCorner {
             backgroundColor += greenTextColor
@@ -202,9 +206,7 @@ class PlayerStyles : Stylesheet() {
         bottomPlayerBarTrackControls {
             backgroundColor += greenTextColor
             alignment = Pos.CENTER
-//            borderColor += box(Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK)
-//            borderStyle += BorderStrokeStyle.SOLID
-//            borderWidth += box(1.px)
+
         }
 
         clearButton {
