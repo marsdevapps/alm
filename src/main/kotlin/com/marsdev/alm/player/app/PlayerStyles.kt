@@ -44,6 +44,7 @@ class PlayerStyles : Stylesheet() {
         val bottomPlayerBar by cssclass()
         val bottomPlayerBarRightCorner by cssid()
         val bottomPlayerBarTrackTitle by cssid()
+        val bottomPlayerBarTrackTitleBackground by cssid()
         val bottomPlayerBarTrackDuration by cssid()
         val bottomPlayerBarTrackControls by cssid()
 
@@ -167,7 +168,6 @@ class PlayerStyles : Stylesheet() {
         }
 
         bottomPlayerBar {
-            backgroundColor += greenTextColor
             padding = box(40.px)
             spacing = 10.px
             alignment = Pos.CENTER_LEFT
@@ -176,26 +176,33 @@ class PlayerStyles : Stylesheet() {
             backgroundColor += greenTextColor
 
         }
+        bottomPlayerBarTrackTitleBackground {
+            //            backgroundColor += c("#fff")
+            backgroundColor += Color.BLACK
+            font = openSansLight
+            textFill = Color.WHITE
+            fontSize = 18.px
+            opacity = 0.7
+        }
         bottomPlayerBarTrackTitle {
             backgroundColor += Color.TRANSPARENT
-            effect = GaussianBlur()
+//            effect = GaussianBlur()
             font = openSansLight
             textFill = Color.WHITE
             fontSize = 18.px
         }
+
         bottomPlayerBarTrackDuration {
             backgroundColor += Color.TRANSPARENT
             effect = GaussianBlur()
             font = openSansRegular
             textFill = Color.WHITE
             fontSize = 18.px
-
+            opacity = 0.7
         }
         bottomPlayerBarTrackControls {
             backgroundColor += greenTextColor
             alignment = Pos.CENTER
-            opacity = 0.7
-
         }
 
         clearButton {

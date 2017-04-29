@@ -3,11 +3,14 @@ package com.marsdev.alm.player.views
 import com.marsdev.alm.player.app.LibraryScope
 import com.marsdev.alm.player.app.PlayerStyles
 import javafx.scene.effect.DropShadow
+import javafx.scene.input.ScrollEvent
 import javafx.scene.paint.Color
 import tornadofx.*
 
 class AlbumsView : View("Albums") {
     override val scope = super.scope as LibraryScope
+
+    object ScrollFinished : FXEvent()
 
     override val root = borderpane {
 
@@ -37,7 +40,8 @@ class AlbumsView : View("Albums") {
                     scope.currentAlbum.item = it
                     replaceWith(AlbumView::class, ViewTransition.FadeThrough(1.0.seconds, Color.BLACK))
                 }
-
+            }.addEventFilter(ScrollEvent.ANY) {
+                fire(ScrollFinished)
             }
         }
 
