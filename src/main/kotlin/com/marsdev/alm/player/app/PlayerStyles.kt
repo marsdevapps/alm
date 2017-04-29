@@ -295,9 +295,9 @@ class PlayerStyles : Stylesheet() {
             backgroundColor += Color.BLACK
             prefHeight = 23.3.px
             prefWidth = 20.px
-            shape = "M-2059,25V0h7V25Zm-13,0V0h7V25Z"
+            shape = "M8,5V76.379L64.083,40.689Z"
             and(selected) {
-                shape = "M8,5V76.379L64.083,40.689Z"
+                shape = "M-2059,25V0h7V25Zm-13,0V0h7V25Z"
             }
         }
 

@@ -68,10 +68,12 @@ class Library : Controller(), MediaPlayerEventListener {
 
     fun play() {
         executor.execute({ mediaPlayerComponent.mediaPlayer.play() })
+        scope.trackPlaying.set(true)
     }
 
     fun pause() {
         executor.execute({ mediaPlayerComponent.mediaPlayer.pause() })
+        scope.trackPlaying.set(false)
     }
 
     fun stop() {

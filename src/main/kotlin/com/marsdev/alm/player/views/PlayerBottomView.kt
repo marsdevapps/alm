@@ -94,13 +94,14 @@ class PlayerBottomView : View("Bottom") {
                 }
 
                 togglebutton {
+                    selectedProperty().bindBidirectional(scope.trackPlaying)
                     addClass(PlayerStyles.playButton)
                     isPickOnBounds = true
                     setOnAction {
                         if (isSelected) {
-                            library.pause()
-                        } else {
                             library.play()
+                        } else {
+                            library.pause()
                         }
                     }
                 }
