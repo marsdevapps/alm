@@ -1,11 +1,16 @@
 
+Simple Music player built with [TornadoFX](https://github.com/edvin/tornadofx).  
+
+Based off of a design by [@JoAccord](https://twitter.com/JoAccord)
+
+Very much a work in progress...
+
+Loading screen.
 ![Loading Screen](src/main/design/ss/loading-screen.png)
+Albums Screen with a track playing.
 ![Albums Playing](src/main/design/ss/albums-playing.png)
 
-http://nightlies.videolan.org/build/
 
-http://www.jsresources.org/links.html
+FLAC support via [vlcj](https://github.com/caprica/vlcj).
 
-https://www.nayuki.io/page/flac-library-java
-
-http://capricasoftware.co.uk/#/projects/vlcj/tutorial
+Audio Tagging from [Jaudiotagger](http://www.jthink.net/jaudiotagger/).
