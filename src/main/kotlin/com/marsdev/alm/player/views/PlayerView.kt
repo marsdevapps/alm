@@ -6,15 +6,21 @@ import tornadofx.*
 
 class PlayerView : View("ALM Player") {
     override val scope = super.scope as LibraryScope
-    override val root = borderpane {
-        addClass(PlayerStyles.contentPane)
-        left(PlayerSideNavView::class)
-        center {
-            borderpane {
-                top(PlayerTopView::class)
-                center(MainContentView::class).addClass(PlayerStyles.stackContentPane)
+    override val root = stackpane {
+        borderpane {
+            addClass(PlayerStyles.contentPane)
+            left(PlayerSideNavView::class)
+            center {
+                borderpane {
+                    top(PlayerTopView::class)
+                    center(MainContentView::class).addClass(PlayerStyles.stackContentPane)
+                }
             }
         }
-        bottom(PlayerBottomView::class)
+        borderpane {
+            bottom(PlayerBottomView::class)
+            pickOnBoundsProperty().set(false)
+        }
+
     }
 }

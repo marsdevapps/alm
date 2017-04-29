@@ -1,9 +1,9 @@
 package com.marsdev.alm.player.views
 
 import com.marsdev.alm.player.app.PlayerStyles
+import com.marsdev.alm.player.app.fontAwesomeIcon
+import com.marsdev.alm.player.app.materialIcon
 import com.marsdev.alm.player.controllers.Library
-import com.marsdev.alm.simple.app.fontAwesomeIcon
-import com.marsdev.alm.simple.app.materialIcon
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon
 import de.jensd.fx.glyphs.materialicons.MaterialIcon
 import javafx.geometry.Pos
@@ -32,21 +32,21 @@ class PlayerSideNavView : View("Navigation") {
         })
         listmenu {
             iconPosition = Side.TOP
-            item("", materialIcon(MaterialIcon.DEHAZE, 30))
-            item("", fontAwesomeIcon(FontAwesomeIcon.SEARCH, 30))
-            item("", fontAwesomeIcon(FontAwesomeIcon.LOCATION_ARROW, 30))
-            item("", fontAwesomeIcon(FontAwesomeIcon.DOT_CIRCLE_ALT, 30)).setOnMouseClicked { library.showAlbumsView() }
-            item("", fontAwesomeIcon(FontAwesomeIcon.MUSIC, 30))
-            item("", materialIcon(MaterialIcon.GRAPHIC_EQ, 30))
-            item("", fontAwesomeIcon(FontAwesomeIcon.USER_ALT, 30))
+            item("hello", graphic = materialIcon(MaterialIcon.DEHAZE, 30))
+            item(graphic = fontAwesomeIcon(FontAwesomeIcon.SEARCH, 30))
+            item(graphic = fontAwesomeIcon(FontAwesomeIcon.LOCATION_ARROW, 30))
+            item(graphic = fontAwesomeIcon(FontAwesomeIcon.DOT_CIRCLE_ALT, 30)).setOnMouseClicked { library.showAlbumsView() }
+            item(graphic = fontAwesomeIcon(FontAwesomeIcon.MUSIC, 30))
+            item(graphic = materialIcon(MaterialIcon.GRAPHIC_EQ, 30))
+            item(graphic = fontAwesomeIcon(FontAwesomeIcon.USER_ALT, 30))
         }
         add(region { prefHeight = 800.0 })
         listmenu {
-            item("", fontAwesomeIcon(FontAwesomeIcon.GEARS, 30))
+            item(graphic = fontAwesomeIcon(FontAwesomeIcon.GEARS, 30))
         }
         add(region {
-            prefHeight = 50.0
-            minHeight = 50.0
+            prefHeight = 120.0
+            minHeight = 120.0
         })
         setId(PlayerStyles.sideBar)
     }

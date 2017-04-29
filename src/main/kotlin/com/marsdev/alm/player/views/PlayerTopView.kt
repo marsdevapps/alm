@@ -1,7 +1,7 @@
 package com.marsdev.alm.player.views
 
-import com.marsdev.alm.simple.app.fontAwesomeIcon
-import com.marsdev.alm.simple.app.materialIcon
+import com.marsdev.alm.player.app.fontAwesomeIcon
+import com.marsdev.alm.player.app.materialIcon
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon
 import de.jensd.fx.glyphs.materialicons.MaterialIcon
 import javafx.geometry.Orientation

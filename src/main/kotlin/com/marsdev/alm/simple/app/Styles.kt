@@ -1,9 +1,5 @@
 package com.marsdev.alm.simple.app
 
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView
-import de.jensd.fx.glyphs.materialicons.MaterialIcon
-import de.jensd.fx.glyphs.materialicons.MaterialIconView
 import javafx.scene.paint.Color
 import tornadofx.*
 
@@ -63,17 +59,4 @@ class Styles : Stylesheet() {
     }
 
 
-}
-
-fun fontAwesomeIcon(user: FontAwesomeIcon, size: Int): FontAwesomeIconView {
-    val iconview = FontAwesomeIconView(user)
-    iconview.setGlyphSize(size)
-    return iconview
-}
-
-
-fun materialIcon(user: MaterialIcon, size: Int): MaterialIconView {
-    val iconview = MaterialIconView(user)
-    iconview.setGlyphSize(size)
-    return iconview
 }

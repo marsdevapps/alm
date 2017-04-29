@@ -2,6 +2,8 @@ package com.marsdev.alm.player.app
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView
+import de.jensd.fx.glyphs.materialicons.MaterialIcon
+import de.jensd.fx.glyphs.materialicons.MaterialIconView
 import javafx.geometry.Pos
 import javafx.scene.effect.DropShadow
 import javafx.scene.effect.GaussianBlur
@@ -192,12 +194,14 @@ class PlayerStyles : Stylesheet() {
         bottomPlayerBarTrackControls {
             backgroundColor += greenTextColor
             alignment = Pos.CENTER
+            opacity = 0.7
 
         }
 
         clearButton {
             backgroundColor += Color.TRANSPARENT
         }
+
 
         listItem contains star {
             fill = Color.WHITE
@@ -257,4 +261,8 @@ class PlayerStyles : Stylesheet() {
         }
 
     }
+
 }
+
+fun fontAwesomeIcon(icon: FontAwesomeIcon, size: Int) = FontAwesomeIconView(icon).apply { glyphSize = size }
+fun materialIcon(icon: MaterialIcon, size: Int) = MaterialIconView(icon).apply { glyphSize = size }
