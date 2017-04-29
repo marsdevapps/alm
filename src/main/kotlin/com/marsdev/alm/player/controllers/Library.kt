@@ -33,8 +33,7 @@ class Library : Controller(), MediaPlayerEventListener {
 
     fun loadAlbums(): Boolean {
         if (scope.currentAlbums.size == 0) {
-//            scope.currentAlbums.addAll(albumService.getAlbums("D:\\temp\\music-small"))
-            scope.currentAlbums.addAll(albumService.getAlbums("D:\\music"))
+            scope.currentAlbums.addAll(albumService.getAlbums("D:\\temp\\music-small"))
         }
         return true
     }

@@ -2,6 +2,7 @@ package com.marsdev.alm.player.views
 
 import com.marsdev.alm.player.app.LibraryScope
 import com.marsdev.alm.player.app.PlayerStyles
+import com.marsdev.alm.player.models.AlbumModel
 import javafx.scene.effect.DropShadow
 import javafx.scene.input.ScrollEvent
 import javafx.scene.paint.Color
@@ -9,7 +10,7 @@ import tornadofx.*
 
 class AlbumsView : View("Albums") {
     override val scope = super.scope as LibraryScope
-
+    val currentAlbum: AlbumModel by inject()
     object ScrollFinished : FXEvent()
 
     override val root = borderpane {
@@ -37,7 +38,7 @@ class AlbumsView : View("Albums") {
                 }
                 onUserSelect {
                     println("Album: ${it.name}  Track Count:  ${it.tracks.size}")
-                    scope.currentAlbum.item = it
+                    currentAlbum.item = it
                     replaceWith(AlbumView::class, ViewTransition.FadeThrough(1.0.seconds, Color.BLACK))
                 }
             }.addEventFilter(ScrollEvent.ANY) {

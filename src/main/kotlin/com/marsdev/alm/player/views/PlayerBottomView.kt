@@ -3,6 +3,8 @@ package com.marsdev.alm.player.views
 import com.marsdev.alm.player.app.LibraryScope
 import com.marsdev.alm.player.app.PlayerStyles
 import com.marsdev.alm.player.controllers.Library
+import com.marsdev.alm.player.models.AlbumModel
+import com.marsdev.alm.player.models.TrackModel
 import de.jensd.fx.glyphs.materialicons.MaterialIcon
 import de.jensd.fx.glyphs.materialicons.MaterialIconView
 import javafx.geometry.Pos
@@ -13,6 +15,9 @@ import tornadofx.*
 class PlayerBottomView : View("Bottom") {
     override val scope = super.scope as LibraryScope
     val library: Library by inject()
+    val currentAlbum: AlbumModel by inject()
+    val currentTrack: TrackModel by inject()
+
     val bottomIcon = MaterialIconView(MaterialIcon.FORMAT_LIST_BULLETED)
 
     val bottomHeight = 100.0
@@ -37,7 +42,7 @@ class PlayerBottomView : View("Bottom") {
             }.setId(PlayerStyles.bottomPlayerBarRightCorner)
 
             imageview {
-                imageProperty().bind(scope.currentAlbum.image)
+                imageProperty().bind(currentAlbum.image)
                 fitHeight = bottomHeight
                 fitWidth = 100.0
                 gridpaneColumnConstraints {
@@ -61,7 +66,7 @@ class PlayerBottomView : View("Bottom") {
                     addClass(PlayerStyles.progressBar)
                 }
                 hbox {
-                    label(scope.currentTrack.title) {
+                    label(currentTrack.title) {
                         setId(PlayerStyles.bottomPlayerBarTrackTitle)
                         hgrow = Priority.ALWAYS
                     }
