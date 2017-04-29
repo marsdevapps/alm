@@ -32,7 +32,7 @@ class PlayerSideNavView : View("Navigation") {
         })
         listmenu {
             iconPosition = Side.TOP
-            item("hello", graphic = materialIcon(MaterialIcon.DEHAZE, 30))
+            item(graphic = materialIcon(MaterialIcon.DEHAZE, 30))
             item(graphic = fontAwesomeIcon(FontAwesomeIcon.SEARCH, 30))
             item(graphic = fontAwesomeIcon(FontAwesomeIcon.LOCATION_ARROW, 30))
             item(graphic = fontAwesomeIcon(FontAwesomeIcon.DOT_CIRCLE_ALT, 30)).setOnMouseClicked { library.showAlbumsView() }
