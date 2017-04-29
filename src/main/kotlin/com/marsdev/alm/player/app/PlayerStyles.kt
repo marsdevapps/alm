@@ -198,11 +198,13 @@ class PlayerStyles : Stylesheet() {
             opacity = 1.0
         }
         bottomPlayerBarTrackTitle {
-            backgroundColor += Color.TRANSPARENT
-//            effect = GaussianBlur()
+            padding = box(20.px)
             font = openSansLight
             textFill = Color.WHITE
             fontSize = 18.px
+            maxWidth = infinity
+            maxHeight = infinity
+            alignment = Pos.CENTER_LEFT
         }
 
         bottomPlayerBarTrackDurationLabel {
@@ -210,6 +212,9 @@ class PlayerStyles : Stylesheet() {
             font = openSansRegular
             textFill = Color.WHITE
             fontSize = 18.px
+            maxWidth = infinity
+            maxHeight = infinity
+            alignment = Pos.CENTER_RIGHT
         }
 
         bottomPlayerBarTrackDuration {

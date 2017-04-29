@@ -46,24 +46,6 @@ class PlayerBottomView : View("Bottom") {
                 }
             }.setId(PlayerStyles.bottomPlayerBar)
 
-            // track title
-            stackpane {
-                rectangle {
-                    fill = c("#364743")
-//                    effect = BoxBlur(10.0, 10.0, 3)
-                    effect = GaussianBlur()
-                    opacity = 0.70
-                    widthProperty().bind(this@stackpane.widthProperty())
-                    heightProperty().bind(this@stackpane.heightProperty())
-
-                }
-                label(scope.currentTrack.title).setId(PlayerStyles.bottomPlayerBarTrackTitle)
-                gridpaneColumnConstraints {
-                    hgrow = Priority.SOMETIMES
-                    percentWidth = 17.0
-                }
-            }
-
             stackpane {
                 rectangle {
                     fill = c("#0E211E")
@@ -74,16 +56,26 @@ class PlayerBottomView : View("Bottom") {
                     heightProperty().bind(this@stackpane.heightProperty())
 
                 }
-                label(stringBinding(scope.duration) {
-                    com.marsdev.alm.util.TimeFormatter.formatMilliseconds(value.toLong())
-                }) {
-                    maxWidth = Double.MAX_VALUE
-                    alignment = Pos.CENTER_RIGHT
-                    setId(PlayerStyles.bottomPlayerBarTrackDurationLabel)
+                progressbar {
+
+                }
+                hbox {
+                    label(scope.currentTrack.title) {
+                        setId(PlayerStyles.bottomPlayerBarTrackTitle)
+                        hgrow = Priority.ALWAYS
+                    }
+
+                    label(stringBinding(scope.duration) {
+                        com.marsdev.alm.util.TimeFormatter.formatMilliseconds(value.toLong())
+                    }) {
+                        setId(PlayerStyles.bottomPlayerBarTrackDurationLabel)
+                        hgrow = Priority.ALWAYS
+                    }
+
                 }
                 gridpaneColumnConstraints {
                     hgrow = Priority.SOMETIMES
-                    percentWidth = 23.0
+                    percentWidth = 40.0
                 }
                 setId(PlayerStyles.bottomPlayerBarTrackDuration)
             }
