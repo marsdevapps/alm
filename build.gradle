@@ -39,14 +39,13 @@ junitPlatform {
 dependencies {
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.13'
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-javafx:0.13'
-    compile 'no.tornado:tornadofx:1.7.4-SNAPSHOT'
+    compile 'no.tornado:tornadofx:1.7.4'
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'de.jensd:fontawesomefx-commons:8.15'
     compile 'de.jensd:fontawesomefx-fontawesome:4.7.0-5'
     compile 'de.jensd:fontawesomefx-materialicons:2.2.0-5'
 
     compile 'uk.co.caprica:vlcj:3.11.0-SNAPSHOT'
-    compile 'no.tornado:tornadofx-controls:1.0.4'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.jetbrains.spek:spek-api:1.1.0-beta3'

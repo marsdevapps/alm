@@ -11,26 +11,9 @@ import javafx.geometry.Side
 import javafx.scene.layout.Priority
 import javafx.scene.paint.Color
 import tornadofx.*
-import tornadofx.control.*
 
 class PlayerSideNavView : View("Navigation") {
-    val hamburgerMenuItem = ListItem("", materialIcon(MaterialIcon.DEHAZE, 30))
-    val searchMenuItem = ListItem("", fontAwesomeIcon(FontAwesomeIcon.SEARCH, 30))
-    val locationItem = ListItem("", fontAwesomeIcon(FontAwesomeIcon.LOCATION_ARROW, 30))
-    val albumItem = ListItem("", fontAwesomeIcon(FontAwesomeIcon.DOT_CIRCLE_ALT, 30))
-    val musicItem = ListItem("", fontAwesomeIcon(FontAwesomeIcon.MUSIC, 30))
-    val graphicEQItem = ListItem("", materialIcon(MaterialIcon.GRAPHIC_EQ, 30))
-    val userMenuItem = ListItem("", fontAwesomeIcon(FontAwesomeIcon.USER_ALT, 30))
-    val settingsItem = ListItem("", fontAwesomeIcon(FontAwesomeIcon.GEARS, 30))
-    val navMenu = ListMenu(hamburgerMenuItem, searchMenuItem, locationItem, albumItem, musicItem, graphicEQItem, userMenuItem)
-    val bottomNavMenu = ListMenu(settingsItem)
     val library: Library by inject()
-    init {
-        navMenu.iconPosition = Side.TOP
-        albumItem.setOnMouseClicked {
-            library.showAlbumsView()
-        }
-    }
 
     override val root = vbox {
         vgrow = Priority.ALWAYS
@@ -47,9 +30,20 @@ class PlayerSideNavView : View("Navigation") {
             prefHeight = 40.0
             minHeight = 40.0
         })
-        add(navMenu)
+        listmenu {
+            iconPosition = Side.TOP
+            item("", materialIcon(MaterialIcon.DEHAZE, 30))
+            item("", fontAwesomeIcon(FontAwesomeIcon.SEARCH, 30))
+            item("", fontAwesomeIcon(FontAwesomeIcon.LOCATION_ARROW, 30))
+            item("", fontAwesomeIcon(FontAwesomeIcon.DOT_CIRCLE_ALT, 30)).setOnMouseClicked { library.showAlbumsView() }
+            item("", fontAwesomeIcon(FontAwesomeIcon.MUSIC, 30))
+            item("", materialIcon(MaterialIcon.GRAPHIC_EQ, 30))
+            item("", fontAwesomeIcon(FontAwesomeIcon.USER_ALT, 30))
+        }
         add(region { prefHeight = 800.0 })
-        add(bottomNavMenu)
+        listmenu {
+            item("", fontAwesomeIcon(FontAwesomeIcon.GEARS, 30))
+        }
         add(region {
             prefHeight = 50.0
             minHeight = 50.0
