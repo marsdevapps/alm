@@ -56,8 +56,9 @@ class PlayerBottomView : View("Bottom") {
                     heightProperty().bind(this@stackpane.heightProperty())
 
                 }
-                progressbar {
-
+                progressbar(scope.progress) {
+                    hgrow = Priority.ALWAYS
+                    addClass(PlayerStyles.progressBar)
                 }
                 hbox {
                     label(scope.currentTrack.title) {

@@ -93,6 +93,8 @@ class PlayerStyles : Stylesheet() {
         val cleanButton by cssid()
         val albumTrackList by cssclass()
 
+        val progressBar by cssclass()
+
     }
 
     init {
@@ -334,6 +336,27 @@ class PlayerStyles : Stylesheet() {
             prefHeight = 23.3.px
             prefWidth = 20.px
             shape = "M12.238,10.462,5.762,4,4,5.762l6.463,6.463ZM17.125,4l2.55,2.55L4,22.237,5.762,24,21.45,8.325,24,10.875V4Zm.412,11.762-1.762,1.763,3.912,3.912L17.125,24H24V17.125l-2.55,2.55-3.912-3.913Z"
+        }
+
+        progressBar contains star {
+            backgroundRadius += box(0.px)
+            backgroundInsets += box(0.px)
+            backgroundColor += Color.TRANSPARENT
+
+        }
+        progressBar {
+            borderColor += box(Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT)
+            backgroundColor += LinearGradient(0.5, 0.5, 0.5, 1.1, true, CycleMethod.NO_CYCLE, Stop(0.0, c("#292e33", 1.0)), Stop(1.0, c("#1a1b1c", 1.0)))
+            bar {
+                borderColor += box(Color.TRANSPARENT, Color.WHITE, Color.TRANSPARENT, Color.TRANSPARENT)
+                borderStyle += BorderStrokeStyle.SOLID
+                borderWidth += box(1.px)
+                backgroundInsets += box(0.px)
+                backgroundColor += c("#1a1b1c")
+                opacity = 0.7
+            }
+            maxWidth = infinity
+            maxHeight = infinity
         }
     }
 
