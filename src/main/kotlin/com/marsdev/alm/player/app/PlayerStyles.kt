@@ -177,12 +177,11 @@ class PlayerStyles : Stylesheet() {
 
         }
         bottomPlayerBarTrackTitleBackground {
-            //            backgroundColor += c("#fff")
-            backgroundColor += Color.BLACK
+            backgroundColor += c("#083120")
             font = openSansLight
             textFill = Color.WHITE
             fontSize = 18.px
-            opacity = 0.7
+            opacity = 1.0
         }
         bottomPlayerBarTrackTitle {
             backgroundColor += Color.TRANSPARENT
@@ -203,6 +202,9 @@ class PlayerStyles : Stylesheet() {
         bottomPlayerBarTrackControls {
             backgroundColor += greenTextColor
             alignment = Pos.CENTER
+//            borderColor += box(Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK)
+//            borderStyle += BorderStrokeStyle.SOLID
+//            borderWidth += box(1.px)
         }
 
         clearButton {
