@@ -223,7 +223,8 @@ class PlayerStyles : Stylesheet() {
 
         bottomPlayerBarTrackDuration {
             backgroundColor += Color.TRANSPARENT
-            effect = GaussianBlur()
+//            backgroundColor += c(0.0,0.0,0.0,0.5)
+//            effect = GaussianBlur()
             opacity = 0.7
         }
 

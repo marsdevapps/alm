@@ -11,7 +11,9 @@ import tornadofx.*
 class AlbumsView : View("Albums") {
     override val scope = super.scope as LibraryScope
     val currentAlbum: AlbumModel by inject()
-    object ScrollFinished : FXEvent()
+
+    object AlbumsScroll : FXEvent()
+
 
     override val root = borderpane {
 
@@ -42,7 +44,7 @@ class AlbumsView : View("Albums") {
                     replaceWith(AlbumView::class, ViewTransition.FadeThrough(1.0.seconds, Color.BLACK))
                 }
             }.addEventFilter(ScrollEvent.ANY) {
-                fire(ScrollFinished)
+                fire(AlbumsScroll)
             }
         }
 

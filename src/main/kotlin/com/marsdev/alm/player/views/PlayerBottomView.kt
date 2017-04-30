@@ -7,8 +7,13 @@ import com.marsdev.alm.player.models.AlbumModel
 import com.marsdev.alm.player.models.TrackModel
 import de.jensd.fx.glyphs.materialicons.MaterialIcon
 import de.jensd.fx.glyphs.materialicons.MaterialIconView
+import javafx.application.Platform
+import javafx.beans.property.SimpleObjectProperty
 import javafx.geometry.Pos
+import javafx.scene.SnapshotParameters
 import javafx.scene.effect.BoxBlur
+import javafx.scene.image.Image
+import javafx.scene.image.WritableImage
 import javafx.scene.layout.Priority
 import tornadofx.*
 
@@ -21,11 +26,38 @@ class PlayerBottomView : View("Bottom") {
     val currentTrack: TrackModel by inject()
 
     val bottomIcon = MaterialIconView(MaterialIcon.FORMAT_LIST_BULLETED)
+    val trackTitleImageViewImage = SimpleObjectProperty<Image>()
 
     val bottomHeight = 100.0
 
     init {
         bottomIcon.glyphSize = 40.0
+        subscribe<AlbumsView.AlbumsScroll> {
+
+            Platform.runLater {
+                val image = find(AlbumsView::class).root.snapshot(SnapshotParameters(), null)
+                if (image.requestedHeight > 1 && image.requestedWidth > 1) {
+                    val bounds = root.scene.lookup("#bottom-player-bar-track-duration").boundsInLocal
+                    val screenBounds = root.scene.lookup("#bottom-player-bar-track-duration").localToScene(bounds)
+                    val X = screenBounds.minX.toInt()
+                    val Y = screenBounds.minY.toInt()
+                    val W = screenBounds.width.toInt()
+                    val H = screenBounds.height.toInt()
+                    // todo remove out hard coding...
+                    val t = Y - H + 30
+
+                    // todo remove out hard coding...
+                    val imageCrop = WritableImage(image.pixelReader, 120, t, W, H)
+                    trackTitleImageViewImage.set(imageCrop)
+//                ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", File("C:\\temp\\image.png"))
+//                ImageIO.write(SwingFXUtils.fromFXImage(imageCrop, null), "png", File("C:\\temp\\imageCrop.png"))
+
+                }
+            }
+
+
+        }
+
     }
 
     override val root = gridpane {
@@ -54,13 +86,17 @@ class PlayerBottomView : View("Bottom") {
             }.setId(PlayerStyles.bottomPlayerBar)
 
             stackpane {
+                prefHeight = bottomHeight
+                prefWidth = 767.0
                 pane {
                     imageview {
                         fitWidthProperty().bind(this@stackpane.widthProperty())
                         fitHeightProperty().bind(this@stackpane.heightProperty())
-                        effect = BoxBlur(15.0, 15.0, 20)
-                        preserveRatioProperty().set(false)
+                        effect = BoxBlur(5.0, 5.0, 3)
+                        imageProperty().bind(trackTitleImageViewImage)
                     }
+
+
                 }
                 progressbar(scope.progress) {
                     hgrow = Priority.ALWAYS
@@ -83,8 +119,7 @@ class PlayerBottomView : View("Bottom") {
                     hgrow = Priority.SOMETIMES
                     percentWidth = 40.0
                 }
-                setId(PlayerStyles.bottomPlayerBarTrackDuration)
-            }
+            }.setId(PlayerStyles.bottomPlayerBarTrackDuration)
             hbox {
                 button {
                     addClass(PlayerStyles.previousButton)
@@ -126,4 +161,6 @@ class PlayerBottomView : View("Bottom") {
         }
 
     }
+
+
 }
