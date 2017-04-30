@@ -63,6 +63,8 @@ class PlayerStyles : Stylesheet() {
 
         val listMenu by cssclass()
         val listItem by cssclass()
+        val glyphIcon by cssclass()
+        val graphic by cssclass()
         val active by csspseudoclass()
 
         val albumView by cssclass()
@@ -240,23 +242,31 @@ class PlayerStyles : Stylesheet() {
             backgroundColor += Color.TRANSPARENT
         }
 
+        listMenu {
+        }
 
         listItem contains star {
             fill = Color.WHITE
-            and(active) {
-                fill = greenTextColor
-            }
+
             and(hover) {
                 fill = greenTextColor
             }
-            alignment = Pos.BASELINE_CENTER
-
-
         }
+
+
         listItem {
             padding = box(20.px)
             backgroundColor += Color.TRANSPARENT
             alignment = Pos.BASELINE_CENTER
+            and(active) {
+                fill = greenTextColor
+                graphic {
+                    fill = greenTextColor
+                }
+                graphic {
+                    fill = greenTextColor
+                }
+            }
         }
 
         albumsView {
