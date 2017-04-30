@@ -51,7 +51,7 @@ class PlayerStyles : Stylesheet() {
 
         val bottomPlayerBar by cssclass()
         val bottomPlayerBarRightCorner by cssid()
-        val bottomPlayerBarTrackTitle by cssid()
+        val bottomPlayerBarTrackTitleLabel by cssid()
         val bottomPlayerBarTrackTitleBackground by cssid()
         val bottomPlayerBarTrackDuration by cssid()
         val bottomPlayerBarTrackDurationLabel by cssid()
@@ -192,6 +192,7 @@ class PlayerStyles : Stylesheet() {
             backgroundColor += greenTextColor
 
         }
+
         bottomPlayerBarTrackTitleBackground {
             backgroundColor += c("#083120")
             font = openSansLight
@@ -199,7 +200,8 @@ class PlayerStyles : Stylesheet() {
             fontSize = 18.px
             opacity = 1.0
         }
-        bottomPlayerBarTrackTitle {
+
+        bottomPlayerBarTrackTitleLabel {
             padding = box(20.px)
             font = openSansLight
             textFill = Color.WHITE

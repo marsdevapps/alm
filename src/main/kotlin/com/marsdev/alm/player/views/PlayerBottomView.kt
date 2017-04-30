@@ -8,10 +8,12 @@ import com.marsdev.alm.player.models.TrackModel
 import de.jensd.fx.glyphs.materialicons.MaterialIcon
 import de.jensd.fx.glyphs.materialicons.MaterialIconView
 import javafx.geometry.Pos
-import javafx.scene.effect.GaussianBlur
+import javafx.scene.effect.BoxBlur
 import javafx.scene.layout.Priority
 import tornadofx.*
 
+// todo clean up all styling and move to style sheet
+// todo add frosted pane to track progress area
 class PlayerBottomView : View("Bottom") {
     override val scope = super.scope as LibraryScope
     val library: Library by inject()
@@ -44,7 +46,7 @@ class PlayerBottomView : View("Bottom") {
             imageview {
                 imageProperty().bind(currentAlbum.image)
                 fitHeight = bottomHeight
-                fitWidth = 100.0
+                fitWidth = 120.0
                 gridpaneColumnConstraints {
                     hgrow = Priority.SOMETIMES
                     percentWidth = 6.0
@@ -52,14 +54,13 @@ class PlayerBottomView : View("Bottom") {
             }.setId(PlayerStyles.bottomPlayerBar)
 
             stackpane {
-                rectangle {
-                    fill = c("#0E211E")
-//                    effect = BoxBlur(10.0, 10.0, 3)
-                    effect = GaussianBlur()
-                    opacity = 0.70
-                    widthProperty().bind(this@stackpane.widthProperty())
-                    heightProperty().bind(this@stackpane.heightProperty())
-
+                pane {
+                    imageview {
+                        fitWidthProperty().bind(this@stackpane.widthProperty())
+                        fitHeightProperty().bind(this@stackpane.heightProperty())
+                        effect = BoxBlur(15.0, 15.0, 20)
+                        preserveRatioProperty().set(false)
+                    }
                 }
                 progressbar(scope.progress) {
                     hgrow = Priority.ALWAYS
@@ -67,7 +68,7 @@ class PlayerBottomView : View("Bottom") {
                 }
                 hbox {
                     label(currentTrack.title) {
-                        setId(PlayerStyles.bottomPlayerBarTrackTitle)
+                        setId(PlayerStyles.bottomPlayerBarTrackTitleLabel)
                         hgrow = Priority.ALWAYS
                     }
 
@@ -77,7 +78,6 @@ class PlayerBottomView : View("Bottom") {
                         setId(PlayerStyles.bottomPlayerBarTrackDurationLabel)
                         hgrow = Priority.ALWAYS
                     }
-
                 }
                 gridpaneColumnConstraints {
                     hgrow = Priority.SOMETIMES
