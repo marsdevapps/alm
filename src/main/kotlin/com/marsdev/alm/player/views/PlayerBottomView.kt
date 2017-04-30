@@ -35,7 +35,10 @@ class PlayerBottomView : View("Bottom") {
         subscribe<AlbumsView.AlbumsScroll> {
 
             Platform.runLater {
-                val image = find(AlbumsView::class).root.snapshot(SnapshotParameters(), null)
+                val node = find(AlbumsView::class).root
+                val snapParm = SnapshotParameters()
+                snapParm.fill = PlayerStyles.backGroundColor
+                val image = node.snapshot(snapParm, null)
                 if (image.requestedHeight > 1 && image.requestedWidth > 1) {
                     val bounds = root.scene.lookup("#bottom-player-bar-track-duration").boundsInLocal
                     val screenBounds = root.scene.lookup("#bottom-player-bar-track-duration").localToScene(bounds)
@@ -92,7 +95,7 @@ class PlayerBottomView : View("Bottom") {
                     imageview {
                         fitWidthProperty().bind(this@stackpane.widthProperty())
                         fitHeightProperty().bind(this@stackpane.heightProperty())
-                        effect = BoxBlur(5.0, 5.0, 3)
+                        effect = BoxBlur(2.0, 2.0, 3)
                         imageProperty().bind(trackTitleImageViewImage)
                     }
 

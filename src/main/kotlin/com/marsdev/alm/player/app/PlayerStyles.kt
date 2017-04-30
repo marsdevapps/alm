@@ -58,7 +58,7 @@ class PlayerStyles : Stylesheet() {
         val bottomPlayerBarTrackControls by cssid()
 
         val openSansRegular: Font = loadFont("/fonts/Open_Sans/OpenSans-Regular.ttf", 20.0) ?: Font.font(20.0)
-
+        val openSansBold: Font = loadFont("/fonts/Open_Sans/OpenSans-Bold.ttf", 20.0) ?: Font.font(20.0)
         val openSansLight: Font = loadFont("/fonts/Open_Sans/OpenSans-Light.ttf", 20.0) ?: Font.font(20.0)
 
         val listMenu by cssclass()
@@ -67,6 +67,7 @@ class PlayerStyles : Stylesheet() {
 
         val albumView by cssclass()
 
+        val albumsView by cssclass()
         val albumDataGrid by cssclass()
         val albumCell by cssclass()
         val albumTitle by cssid()
@@ -203,7 +204,7 @@ class PlayerStyles : Stylesheet() {
 
         bottomPlayerBarTrackTitleLabel {
             padding = box(20.px)
-            font = openSansLight
+            font = openSansBold
             textFill = Color.WHITE
             fontSize = 18.px
             maxWidth = infinity
@@ -213,7 +214,7 @@ class PlayerStyles : Stylesheet() {
 
         bottomPlayerBarTrackDurationLabel {
             padding = box(20.px)
-            font = openSansRegular
+            font = openSansBold
             textFill = Color.WHITE
             fontSize = 18.px
             maxWidth = infinity
@@ -225,7 +226,7 @@ class PlayerStyles : Stylesheet() {
             backgroundColor += Color.TRANSPARENT
 //            backgroundColor += c(0.0,0.0,0.0,0.5)
 //            effect = GaussianBlur()
-            opacity = 0.7
+//            opacity = 0.7
         }
 
         bottomPlayerBarTrackControls {
@@ -258,6 +259,9 @@ class PlayerStyles : Stylesheet() {
             alignment = Pos.BASELINE_CENTER
         }
 
+        albumsView {
+            backgroundColor += Color.TRANSPARENT
+        }
         albumDataGrid contains star {
             backgroundColor += Color.TRANSPARENT
         }
@@ -349,17 +353,21 @@ class PlayerStyles : Stylesheet() {
         }
         progressBar {
             borderColor += box(Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT)
-            backgroundColor += LinearGradient(0.5, 0.5, 0.5, 1.1, true, CycleMethod.NO_CYCLE, Stop(0.0, c("#292e33", 1.0)), Stop(1.0, c("#1a1b1c", 1.0)))
+
+//            backgroundColor += c("#1d2f2c")
+            backgroundColor += backGroundColor
+//            backgroundColor += LinearGradient(0.5, 0.5, 0.5, 1.1, true, CycleMethod.NO_CYCLE, Stop(0.0, c("#292e33", 1.0)), Stop(1.0, c("#1a1b1c", 1.0)))
             bar {
                 borderColor += box(Color.TRANSPARENT, Color.WHITE, Color.TRANSPARENT, Color.TRANSPARENT)
                 borderStyle += BorderStrokeStyle.SOLID
                 borderWidth += box(1.px)
                 backgroundInsets += box(0.px)
-                backgroundColor += c("#1a1b1c")
+                backgroundColor += c("#32413c")
                 opacity = 0.7
             }
             maxWidth = infinity
             maxHeight = infinity
+            opacity = 0.8
         }
     }
 

@@ -16,7 +16,7 @@ class AlbumsView : View("Albums") {
 
 
     override val root = borderpane {
-
+        addClass(PlayerStyles.albumsView)
         top {
             label("Albums").setId(PlayerStyles.subTitle)
         }
