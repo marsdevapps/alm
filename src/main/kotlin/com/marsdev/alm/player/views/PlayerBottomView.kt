@@ -1,9 +1,9 @@
 package com.marsdev.alm.player.views
 
-import com.marsdev.alm.player.app.LibraryScope
 import com.marsdev.alm.player.app.PlayerStyles
 import com.marsdev.alm.player.controllers.Library
 import com.marsdev.alm.player.models.AlbumModel
+import com.marsdev.alm.player.models.LibraryModel
 import com.marsdev.alm.player.models.TrackModel
 import de.jensd.fx.glyphs.materialicons.MaterialIcon
 import de.jensd.fx.glyphs.materialicons.MaterialIconView
@@ -20,7 +20,6 @@ import tornadofx.*
 // todo clean up all styling and move to style sheet
 // todo add frosted pane to track progress area
 class PlayerBottomView : View("Bottom") {
-    override val scope = super.scope as LibraryScope
     val library: Library by inject()
     val currentAlbum: AlbumModel by inject()
     val currentTrack: TrackModel by inject()
@@ -101,7 +100,7 @@ class PlayerBottomView : View("Bottom") {
 
 
                 }
-                progressbar(scope.progress) {
+                progressbar(LibraryModel.progress) {
                     hgrow = Priority.ALWAYS
                     addClass(PlayerStyles.progressBar)
                 }
@@ -111,7 +110,7 @@ class PlayerBottomView : View("Bottom") {
                         hgrow = Priority.ALWAYS
                     }
 
-                    label(stringBinding(scope.duration) {
+                    label(stringBinding(LibraryModel.duration) {
                         com.marsdev.alm.util.TimeFormatter.formatMilliseconds(value.toLong())
                     }) {
                         setId(PlayerStyles.bottomPlayerBarTrackDurationLabel)
@@ -130,7 +129,7 @@ class PlayerBottomView : View("Bottom") {
                 }
 
                 togglebutton {
-                    selectedProperty().bindBidirectional(scope.trackPlaying)
+                    selectedProperty().bindBidirectional(LibraryModel.trackPlaying)
                     addClass(PlayerStyles.playButton)
                     isPickOnBounds = true
                     setOnAction {

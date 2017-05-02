@@ -1,6 +1,5 @@
 package com.marsdev.alm.player.views
 
-import com.marsdev.alm.player.app.LibraryScope
 import com.marsdev.alm.player.app.PlayerStyles
 import com.marsdev.alm.player.controllers.Library
 import com.marsdev.alm.player.models.AlbumModel
@@ -9,7 +8,6 @@ import javafx.scene.effect.DropShadow
 import tornadofx.*
 
 class AlbumView : View("Album") {
-    override val scope = super.scope as LibraryScope
     val library: Library by inject()
     val currentAlbum: AlbumModel by inject()
     val currentTrack: TrackModel by inject()

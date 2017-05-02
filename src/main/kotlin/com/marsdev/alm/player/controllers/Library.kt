@@ -1,6 +1,6 @@
 package com.marsdev.alm.player.controllers
 
-import com.marsdev.alm.player.app.LibraryScope
+import com.marsdev.alm.player.models.LibraryModel
 import com.marsdev.alm.player.service.AlbumService
 import com.marsdev.alm.player.views.AlbumsView
 import com.marsdev.alm.player.views.MainContentView
@@ -15,7 +15,6 @@ import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
 class Library : Controller(), MediaPlayerEventListener {
-    override val scope = super.scope as LibraryScope
     val albumService = AlbumService()
     val albumsView = find(AlbumsView::class)
     val mainContentView: MainContentView by inject()
@@ -32,8 +31,8 @@ class Library : Controller(), MediaPlayerEventListener {
     }
 
     fun loadAlbums(): Boolean {
-        if (scope.currentAlbums.size == 0) {
-            scope.currentAlbums.addAll(albumService.getAlbums("D:\\temp\\music-small"))
+        if (LibraryModel.currentAlbums.size == 0) {
+            LibraryModel.currentAlbums.addAll(albumService.getAlbums("D:\\temp\\music-small"))
         }
         return true
     }
@@ -44,8 +43,8 @@ class Library : Controller(), MediaPlayerEventListener {
 
     fun setMedia(song: String) {
         fileName = song
-        scope.progress.set(0.0)
-        scope.duration.set(0.0)
+        LibraryModel.progress.set(0.0)
+        LibraryModel.duration.set(0.0)
 
         mediaPlayerComponent.mediaPlayer.prepareMedia(fileName)
         mediaPlayerComponent.mediaPlayer.parseMedia()
@@ -68,12 +67,12 @@ class Library : Controller(), MediaPlayerEventListener {
 
     fun play() {
         executor.execute({ mediaPlayerComponent.mediaPlayer.play() })
-        scope.trackPlaying.set(true)
+        LibraryModel.trackPlaying.set(true)
     }
 
     fun pause() {
         executor.execute({ mediaPlayerComponent.mediaPlayer.pause() })
-        scope.trackPlaying.set(false)
+        LibraryModel.trackPlaying.set(false)
     }
 
     fun stop() {
@@ -181,8 +180,8 @@ class Library : Controller(), MediaPlayerEventListener {
 
     override fun timeChanged(mediaPlayer: MediaPlayer?, newTime: Long) {
         Platform.runLater({
-            scope.duration.set(newTime.toDouble())
-            scope.progress.set(newTime.toDouble() / scope.maxDuration.get())
+            LibraryModel.duration.set(newTime.toDouble())
+            LibraryModel.progress.set(newTime.toDouble() / LibraryModel.maxDuration.get())
         })
     }
 
@@ -193,7 +192,7 @@ class Library : Controller(), MediaPlayerEventListener {
     }
 
     override fun lengthChanged(mediaPlayer: MediaPlayer?, newLength: Long) {
-        Platform.runLater({ scope.maxDuration.set(newLength.toDouble()) })
+        Platform.runLater({ LibraryModel.maxDuration.set(newLength.toDouble()) })
     }
 
     override fun mediaMetaChanged(mediaPlayer: MediaPlayer?, metaType: Int) {
