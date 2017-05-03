@@ -29,7 +29,7 @@ class AlbumView : View("Album") {
                     onUserSelect {
                         currentTrack.item = it
                         library.setMedia(it.directory + "\\" + it.fileName)
-                        library.play()
+                        library.playCommand.execute()
                     }
 
                     cellCache {

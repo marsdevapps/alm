@@ -134,9 +134,9 @@ class PlayerBottomView : View("Bottom") {
                     isPickOnBounds = true
                     setOnAction {
                         if (isSelected) {
-                            library.play()
+                            library.playCommand.execute()
                         } else {
-                            library.pause()
+                            library.pauseCommand.execute()
                         }
                     }
                 }

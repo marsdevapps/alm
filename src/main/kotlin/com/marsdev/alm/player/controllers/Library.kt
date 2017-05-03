@@ -25,6 +25,9 @@ class Library : Controller(), MediaPlayerEventListener {
     private val equalizer = factory.newEqualizer()
     private var fileName: String = ""
 
+    val playCommand = command(this::play)
+    val pauseCommand = command(this::pause)
+
     init {
         executor.allowCoreThreadTimeOut(false)
         mediaPlayerComponent.mediaPlayer.addMediaPlayerEventListener(this)
@@ -65,12 +68,12 @@ class Library : Controller(), MediaPlayerEventListener {
         }
     }
 
-    fun play() {
+    private fun play() {
         executor.execute({ mediaPlayerComponent.mediaPlayer.play() })
         LibraryModel.trackPlaying.set(true)
     }
 
-    fun pause() {
+    private fun pause() {
         executor.execute({ mediaPlayerComponent.mediaPlayer.pause() })
         LibraryModel.trackPlaying.set(false)
     }
