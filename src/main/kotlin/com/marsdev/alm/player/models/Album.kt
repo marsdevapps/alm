@@ -28,16 +28,15 @@ class Album : Comparable<Album> {
 
         other as Album
 
-        if (name != other.name) return false
+        if (name.equals(other.name, true)) return true
 
-        return true
+        return false
     }
 
     override fun hashCode(): Int {
-        var result = artist.hashCode()
-        result = 31 * result + name.hashCode()
-        return result
+        return name.hashCode()
     }
+
 }
 
 class AlbumModel : ItemViewModel<Album>() {
