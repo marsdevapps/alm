@@ -88,7 +88,7 @@ class AlbumService {
                         }
 
                         val newTrack = Track(
-                                currentAlbum.artist,
+                                templateArtist,
                                 currentAlbum,
                                 tag.getFields(TITLE)[0].toString(),
                                 trackYear,
