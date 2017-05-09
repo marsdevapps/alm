@@ -110,10 +110,45 @@ class PlayerStyles : Stylesheet() {
         }
 
         albumTrackList {
+            unsafe("-fx-table-header-border-color", raw("transparent"))
+            unsafe("-fx-table-cell-border-color", raw("-fx-box-border"))
             backgroundColor += Color.TRANSPARENT
 
             font = openSansLight
             textFill = Color.WHITE
+
+            columnHeader {
+                borderStyle += BorderStrokeStyle.NONE
+                borderColor += box(Color.TRANSPARENT)
+                borderWidth += box(0.px, 0.px, 2.px, 0.px)
+                backgroundColor += Color.TRANSPARENT
+
+                label {
+                    textFill = Color.BLACK
+                    alignment = Pos.BASELINE_LEFT
+                }
+            }
+
+            columnHeaderBackground {
+                backgroundColor += Color.TRANSPARENT
+            }
+
+            cell {
+                borderColor += box(Color.BLACK, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT)
+                borderWidth += box(1.px)
+                alignment = Pos.BASELINE_LEFT
+
+            }
+
+            tableRowCell {
+                and(selected) {
+                    cell {
+                        textFill = greenTextColor
+                    }
+                }
+
+            }
+
         }
 
         cleanButton {
