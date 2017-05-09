@@ -3,6 +3,7 @@ package com.marsdev.alm.player.views
 import com.marsdev.alm.player.app.PlayerStyles
 import com.marsdev.alm.player.controllers.Library
 import com.marsdev.alm.player.models.AlbumModel
+import com.marsdev.alm.player.models.Track
 import com.marsdev.alm.player.models.TrackModel
 import javafx.scene.effect.DropShadow
 import tornadofx.*
@@ -24,6 +25,21 @@ class AlbumView : View("Album") {
                     imageProperty().bind(currentAlbum.image)
 
                 }
+
+                tableview(currentAlbum.tracks) {
+                    addClass(PlayerStyles.albumTrackList)
+                    column("Title", Track::title).pctWidth(40.0)
+                    column("Artist", Track::artist).pctWidth(40.0)
+                    column("Year", Track::year).pctWidth(20.0)
+                    columnResizePolicy = SmartResize.POLICY
+                    onUserSelect {
+                        currentTrack.item = it
+                        library.setMedia(it.directory + "\\" + it.fileName)
+                        library.playCommand.execute()
+                    }
+                }
+
+                /*
                 listview(currentAlbum.tracks) {
                     addClass(PlayerStyles.albumTrackList)
                     onUserSelect {
@@ -35,13 +51,16 @@ class AlbumView : View("Album") {
                     cellCache {
                         hbox {
                             label(it.title)
-                            spacer { prefWidth = 25.0 }
                             label(it.artist.name)
-                            spacer { prefWidth = 25.0 }
                             label(it.year.toString())
+                            style {
+                                spacing = 200.px
+                                maxWidth = infinity
+                            }
                         }
                     }
                 }
+                */
             }
         }
 

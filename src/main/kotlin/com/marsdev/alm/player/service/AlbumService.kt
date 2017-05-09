@@ -83,8 +83,8 @@ class AlbumService {
                             ""
                         }
                         var trackYear = 0
-                        if (!dateString.equals("") && dateString.length > 4) {
-                            trackYear = dateString.substring(0, 3).toInt()
+                        if (!dateString.equals("") && dateString.length >= 4) {
+                            trackYear = dateString.substring(0, 4).toInt()
                         }
 
                         val newTrack = Track(

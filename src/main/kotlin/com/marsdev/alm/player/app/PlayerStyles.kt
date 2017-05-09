@@ -106,6 +106,7 @@ class PlayerStyles : Stylesheet() {
             backgroundColor += Color.TRANSPARENT
             font = openSansLight
             textFill = Color.WHITE
+            alignment = Pos.CENTER_LEFT
         }
 
         albumTrackList {
@@ -113,9 +114,6 @@ class PlayerStyles : Stylesheet() {
 
             font = openSansLight
             textFill = Color.WHITE
-            listCell {
-                backgroundColor += Color.TRANSPARENT
-            }
         }
 
         cleanButton {
