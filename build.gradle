@@ -7,7 +7,7 @@ apply plugin: 'maven'
 apply plugin: 'org.junit.platform.gradle.plugin'
 
 buildscript {
-    ext.kotlin_version = '1.1.2-2'
+    ext.kotlin_version = '1.2.71'
 
     repositories {
         mavenLocal()
@@ -39,7 +39,7 @@ junitPlatform {
 dependencies {
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.13'
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-javafx:0.13'
-    compile 'no.tornado:tornadofx:1.7.5'
+    compile 'no.tornado:tornadofx:1.7.17'
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'de.jensd:fontawesomefx-commons:8.15'
     compile 'de.jensd:fontawesomefx-fontawesome:4.7.0-5'

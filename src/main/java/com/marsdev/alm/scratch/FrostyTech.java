@@ -16,7 +16,7 @@ import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -40,12 +40,17 @@ public class FrostyTech extends Application {
 
     @Override
     public void start(Stage stage) {
-        layout.getChildren().setAll(background, createContent());
+        layout.getChildren().setAll(background);
+        BorderPane borderPane = new BorderPane();
+        borderPane.setCenter(new Label("Center"));
+        layout.getChildren().add(borderPane);
+        layout.setBorder(new Border(new BorderStroke(Color.ORANGE,
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1.5, 1.5, 1.5, 1.5))));
         layout.setStyle("-fx-background-color: null");
 
         Scene scene = new Scene(
                 layout,
-                200, 300,
+                800, 600,
                 Color.TRANSPARENT
         );
 
